@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hex_color/flutter_hex_color.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'view/ui/home_ui.dart';
-import 'view/ui/splash_ui.dart';
+
+import 'ui/splash_ui.dart';
+
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
