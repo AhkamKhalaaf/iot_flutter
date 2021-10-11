@@ -6,7 +6,6 @@ import 'bottomtabsui/profile_ui.dart';
 import 'bottomtabsui/settings_ui.dart';
 import 'drawer_side_menu.dart';
 
-
 class HomeUi extends StatefulWidget {
   const HomeUi({Key? key}) : super(key: key);
 
@@ -26,24 +25,38 @@ class _HomeUiState extends State<HomeUi> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Scaffold(backgroundColor: appConfig.backColor,key: _scaffoldKey,
-      appBar: AppBar(   leading: IconButton(
-          icon: const ImageIcon(
-            AssetImage('assets/icons/sideicon.png'),
-            color: Colors.white,
-          ),
-          onPressed: () {
-            _scaffoldKey.currentState?.openDrawer();
-          }),elevation: 0.0,
+        child: Scaffold(
+      backgroundColor: appConfig.backColor,
+      key: _scaffoldKey,
+      appBar: AppBar(
+        leading: IconButton(
+            icon: const ImageIcon(
+              AssetImage('assets/icons/sideicon.png'),
+              color: Colors.white,
+            ),
+            onPressed: () {
+              _scaffoldKey.currentState?.openDrawer();
+            }),
+        elevation: 0.0,
         backgroundColor: appConfig.colorMain,
         title: Text(items[_currentIndex]),
-        centerTitle: true,actions: [
-                        GestureDetector(onTap: (){
+        centerTitle: true,
+        actions: [
+          GestureDetector(
+              onTap: () {
                 //AddDeviceUi
                 Navigator.push(
-                    context, MaterialPageRoute(builder: (BuildContext context) =>
-                    const AddDeviceUi()));
-              },child: const Icon(Icons.add,color: Colors.white,size: 35.0,))],
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                            const AddDeviceUi()));
+              },
+              child: const Icon(
+                Icons.add,
+                color: Colors.white,
+                size: 35.0,
+              ))
+        ],
       ),
       bottomNavigationBar: Stack(
         overflow: Overflow.visible,
@@ -87,40 +100,39 @@ class _HomeUiState extends State<HomeUi> {
                             fontSize: 12.0, fontWeight: FontWeight.bold))),
               ]),
           Positioned(
-              bottom: 30.0,
-              left: MediaQuery.of(context).size.width * 0.5 - 30,
-              child: GestureDetector(onTap: (){
+            bottom: 30.0,
+            left: MediaQuery.of(context).size.width * 0.5 - 30,
+            child: GestureDetector(
+              onTap: () {
                 setState(() {
                   _currentIndex = 1;
                 });
               },
+              child: Container(
+                width: 60.0,
+                decoration: BoxDecoration(
+                    color: appConfig.colorMain.withOpacity(0.125),
+                    shape: BoxShape.circle),
+                height: 60.0,
+                padding: const EdgeInsets.all(5.0),
                 child: Container(
-                    width: 60.0,
-                    decoration: BoxDecoration(
-                        color: appConfig.colorMain.withOpacity(0.125),
-                        shape: BoxShape.circle),
-                    height: 60.0,
-                    padding: const EdgeInsets.all(5.0),
-                    child: Container(
-                      width: 55.0,
-                      height: 55.0,
-                      decoration: BoxDecoration(
-                          color: appConfig.colorMain, shape: BoxShape.circle),
-                      child: const Icon(
-                        Icons.add,
-                        color: Colors.white,
-                        size: 25.0,
-                      ),
-                    ),
+                  width: 55.0,
+                  height: 55.0,
+                  decoration: BoxDecoration(
+                      color: appConfig.colorMain, shape: BoxShape.circle),
+                  child: const Icon(
+                    Icons.add,
+                    color: Colors.white,
+                    size: 25.0,
                   ),
+                ),
               ),
-
             ),
-
+          ),
         ],
       ),
       body: getCurrentIndex(_currentIndex),
-          drawer: const DrawerSideMenu(),
+      drawer: const DrawerSideMenu(),
     ));
   }
 

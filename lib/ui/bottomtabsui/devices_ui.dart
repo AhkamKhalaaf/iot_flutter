@@ -1,35 +1,57 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:iotappexam/common/device_item_ui.dart';
+import 'package:iotappexam/models/device_model.dart';
 import 'package:iotappexam/resources/app_config.dart';
 
 class DevicesUi extends StatefulWidget {
-  const DevicesUi({Key? key }) : super(key: key);
+  const DevicesUi({Key? key}) : super(key: key);
 
   @override
   State<DevicesUi> createState() => _DevicesUiState();
 }
 
 class _DevicesUiState extends State<DevicesUi> {
-  List<String> items = [
-    'assets/devices/alarm.png',
-    'assets/devices/lamp.png',
-    'assets/devices/smarttv.png'
-  ];
-  List<String> title = ['alarm', 'lamp', 'smart tv'];
+  List<Device> devices = [];
+
+  loadLocalDevices() async {
+    try {
+      String data =
+          await rootBundle.loadString('assets/data/data_devices_json.json');
+      devices = DeviceModel.fromJson(json.decode(data)).devices;
+      setState(() {});
+      print('${devices.length}..........length');
+    } catch (e) {
+      print('${e}..........error');
+    }
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    loadLocalDevices();
+  }
+
+  late double paddingValue;
 
   @override
   Widget build(BuildContext context) {
-
-    double paddingValue =MediaQuery.of(context).size.width * 0.05;
-    return  Container(
+    paddingValue = MediaQuery.of(context).size.width * 0.05;
+    return Container(
       padding: EdgeInsets.all(paddingValue),
       color: appConfig.backColor,
-      width:appConfig.w ,
+      width: appConfig.w,
       height: appConfig.h,
       child: ListView.builder(
-          itemCount: items.length,
+          itemCount: devices.length,
           itemBuilder: (context, index) {
-            return DeviceItemUi(imagePath: items[index],title: title[index],description: '',);
+            return DeviceItemUi(
+              imagePath: devices[index].imagePath,
+              title: devices[index].name,
+              description: devices[index].description,
+            );
           }),
     );
 //      SafeArea(

@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'login_ui.dart';
+
 class SplashUi extends StatefulWidget {
   const SplashUi({Key? key}) : super(key: key);
 
@@ -13,10 +14,13 @@ class _SplashUiState extends State<SplashUi> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    Timer(const Duration(seconds: 3), ()=>
-        Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
-        const LoginUi()), (Route<dynamic> route) => false));
+    Timer(
+        const Duration(seconds: 3),
+        () => Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (context) => const LoginUi()),
+            (Route<dynamic> route) => false));
   }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -30,7 +34,7 @@ class _SplashUiState extends State<SplashUi> {
           Image.asset(
             'assets/icons/logo.png',
             width: MediaQuery.of(context).size.width * 0.75,
-          //  height: MediaQuery.of(context).size.width * 0.5,
+            //  height: MediaQuery.of(context).size.width * 0.5,
           ),
 //            Text('Smart Home',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 22.0,
 //          color: appConfig.colorText),)

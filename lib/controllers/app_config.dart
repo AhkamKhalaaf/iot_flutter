@@ -7,9 +7,10 @@ class AppConfig {
   final Color _colorMain = HexColor('#30a84c');
 
   Color get colorText => _colorText;
-  Color get backColor => _backColor;
-  Color get colorMain => _colorMain;
 
+  Color get backColor => _backColor;
+
+  Color get colorMain => _colorMain;
 }
 
 AppConfig appConfig = AppConfig();

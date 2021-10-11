@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:iotappexam/api/account_apis.dart';
 import 'package:iotappexam/common/button_ui.dart';
 import 'package:iotappexam/common/text_form_filed_ui.dart';
 import 'package:iotappexam/resources/app_config.dart';
 
- import 'home_ui.dart';
+import 'home_ui.dart';
 
 class LoginUi extends StatefulWidget {
   const LoginUi({Key? key}) : super(key: key);
@@ -58,10 +59,14 @@ class _LoginUiState extends State<LoginUi> {
                     width: MediaQuery.of(context).size.width * 0.5,
                     //  height: MediaQuery.of(context).size.width * 0.5,
                   ),
-                ),  SizedBox(
+                ),
+                SizedBox(
                   height: MediaQuery.of(context).size.width * 0.1,
                 ),
-                Text('Phone number',style: TextStyle(color: appConfig.colorText),),
+                Text(
+                  'Phone number',
+                  style: TextStyle(color: appConfig.colorText),
+                ),
                 SizedBox(
                   height: MediaQuery.of(context).size.width * 0.025,
                 ),
@@ -85,7 +90,10 @@ class _LoginUiState extends State<LoginUi> {
                 SizedBox(
                   height: MediaQuery.of(context).size.width * 0.05,
                 ),
-                Text('Password',style: TextStyle(color: appConfig.colorText),),
+                Text(
+                  'Password',
+                  style: TextStyle(color: appConfig.colorText),
+                ),
                 SizedBox(
                   height: MediaQuery.of(context).size.width * 0.025,
                 ),
@@ -120,9 +128,13 @@ class _LoginUiState extends State<LoginUi> {
                 SizedBox(
                   height: MediaQuery.of(context).size.width * 0.05,
                 ),
-                Align(alignment: Alignment.center,
-                  child: Text(' do you forget your password ? ',style: TextStyle(color: appConfig.colorMain),
-                  textAlign: TextAlign.center,),
+                Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    ' do you forget your password ? ',
+                    style: TextStyle(color: appConfig.colorMain),
+                    textAlign: TextAlign.center,
+                  ),
                 ),
                 SizedBox(
                   height: MediaQuery.of(context).size.width * 0.05,
@@ -133,11 +145,8 @@ class _LoginUiState extends State<LoginUi> {
                       return;
                     } else {
                       formKeyLogin.currentState!.save();
-
-                      Navigator.of(context).pushAndRemoveUntil(
-                          MaterialPageRoute(
-                              builder: (context) => const HomeUi()),
-                          (Route<dynamic> route) => false);
+                      accountApis.login(context, phoneText.text.toString(),
+                          passwordText.text.toString());
                     }
                   },
                   child: ButtonUi(
@@ -173,9 +182,9 @@ class _LoginUiState extends State<LoginUi> {
                     w: MediaQuery.of(context).size.width -
                         MediaQuery.of(context).size.width * 0.2,
                     padding: 10.0,
-                    widget:   Text(
+                    widget: Text(
                       'Sign Up ',
-                      style: TextStyle(color:  appConfig.colorMain),
+                      style: TextStyle(color: appConfig.colorMain),
                     ),
                     backColor: appConfig.colorText,
                   ),

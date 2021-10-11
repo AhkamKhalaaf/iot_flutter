@@ -6,8 +6,7 @@ class DrawerSideMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(
-          MediaQuery.of(context).size.width * 0.1),
+      padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.1),
       color: Colors.white,
       width: MediaQuery.of(context).size.width * 0.75,
       child: Column(

@@ -1,0 +1,49 @@
+{
+
+  "devices": [
+    {
+      "name": "device 1 ",
+      "id": "87654",
+      "description": "device is so importNT",
+      "imagePath": "assets/devices/alarm.png",
+      "type": "smart home",
+      "status": "on",
+      "actions": [
+        "turn on",
+        "turn off",
+        "delete"
+
+      ]
+
+    }, {
+      "name": "device 2 ",
+      "id": "09876",
+      "description": "device 2  is so importNT",
+      "imagePath": "assets/devices/lamp.png",
+      "type": "smart home",
+      "status": "on",
+      "actions": [
+        "turn on",
+        "turn off",
+        "delete"
+
+      ]
+
+    },
+    {
+      "name": "device 3 ",
+      "id": "87654",
+      "description": "device 3  is so importNT",
+      "imagePath": "assets/devices/smarttv.png",
+      "type": "smart home",
+      "status": "on",
+      "actions": [
+        "turn on",
+        "turn off",
+        "delete"
+
+      ]
+
+    }
+  ]
+}
