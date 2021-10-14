@@ -16,6 +16,7 @@ void main() async {
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   await CacheHelper.init();
   runApp(ProviderScope(child: const MyApp()));
+
 }
 
 

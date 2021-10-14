@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/all.dart';
+import 'package:iotappexam/api/account_apis.dart';
 import 'package:iotappexam/controllers/app_config.dart';
 import 'package:iotappexam/controllers/setting_controller.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:iotappexam/lang/demo_localizations.dart';
+import 'package:iotappexam/ui/splash_ui.dart';
 import '../cashe_hepler.dart';
 import '../values.dart';
 
@@ -95,7 +97,7 @@ class DrawerSideMenu extends StatelessWidget {
                         Icon(FontAwesomeIcons.exclamationCircle,
                             size: 40,
                             color: Theme.of(context).accentColor), () {
-                      Navigator.pop(context);
+                      accountApis.logOut(context);
                     });
                   },
                   child: Row(

@@ -15,6 +15,7 @@
     "signIn": "دخول",
     "signUp": "تسجيل",
     "loggedDone": "تم تسجيل الدخول بنجاح",
+    "loggedDoneOut": "تم تسجيل الخروج  بنجاح",
     "availableDevices": "الأجهزة المتاحة",
     "Profile": "الحساب الشخصي",
     "settings": "الإعدادات",

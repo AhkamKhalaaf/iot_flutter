@@ -3,7 +3,11 @@ import 'package:iotappexam/api/account_apis.dart';
 import 'package:iotappexam/common/button_ui.dart';
 import 'package:iotappexam/common/text_form_filed_ui.dart';
 import 'package:iotappexam/controllers/app_config.dart';
+import 'package:iotappexam/lang/demo_localizations.dart';
+import 'package:iotappexam/models/Language.dart';
 import 'package:iotappexam/values.dart';
+import 'package:iotappexam/controllers/setting_controller.dart';
+import 'package:flutter_riverpod/all.dart';
 
 class LoginUi extends StatefulWidget {
   const LoginUi({Key? key}) : super(key: key);
@@ -37,20 +41,36 @@ class _LoginUiState extends State<LoginUi> {
       backgroundColor: Colors.white,
       body: Container(
         width: MediaQuery.of(context).size.width,
-        alignment: Alignment.center,
         height: MediaQuery.of(context).size.height,
-        padding: EdgeInsets.only(
-            left: MediaQuery.of(context).size.width * 0.1,
-            right: MediaQuery.of(context).size.width * 0.1),
+        padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.1),
         child: SingleChildScrollView(
           child: Form(
             key: formKeyLogin,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
+               children: [
+                Align(alignment:DemoLocalizations.of(context).locale.toString()=='en_US'?Alignment.topRight: Alignment.topLeft,
+                  child: DropdownButton(
+                      onChanged: (Language? lang){
+                        context.read(settingController).changeLanguageLoginUi(lang!);
+                        },
+                      underline: SizedBox(),
+                      icon: Icon(
+                        Icons.language,
+                        color:appConfig.colorText,
+                      ),
+                      items: Language.languageList().map<DropdownMenuItem<Language>>((lang) => DropdownMenuItem(
+                          value: lang,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Text(lang.name,style: TextStyle(fontSize: 30),),
+                              Text(lang.flag),
+                            ],
+                          ))).toList()),
+                ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.width * 0.05,
+                  height: MediaQuery.of(context).size.width * 0.1,
                 ),
                 Center(
                   child: Image.asset(

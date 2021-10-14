@@ -34,10 +34,7 @@ class _SplashUiState extends State<SplashUi> {
           Image.asset(
             'assets/icons/logo.png',
             width: MediaQuery.of(context).size.width * 0.75,
-            //  height: MediaQuery.of(context).size.width * 0.5,
-          ),
-//            Text('Smart Home',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 22.0,
-//          color: appConfig.colorText),)
+           ),
         ],
       )),
     ));
