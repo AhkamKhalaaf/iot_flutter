@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:iotappexam/resources/app_config.dart';
+import 'package:iotappexam/controllers/app_config.dart';
+import 'package:iotappexam/values.dart';
 import 'add_device_ui.dart';
 import 'bottomtabsui/devices_ui.dart';
 import 'bottomtabsui/profile_ui.dart';
@@ -16,14 +17,15 @@ class HomeUi extends StatefulWidget {
 class _HomeUiState extends State<HomeUi> {
   int _currentIndex = 1;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  List<String> items = [
-    'Profile',
-    'devices',
-    'settings',
-  ];
+  List<String> items =[];
 
   @override
   Widget build(BuildContext context) {
+    items = [
+      getString(context, 'Profile'),
+      getString(context, 'availableDevices'),
+     getString(context, 'settings'),
+    ];
     return SafeArea(
         child: Scaffold(
       backgroundColor: appConfig.backColor,
@@ -41,96 +43,60 @@ class _HomeUiState extends State<HomeUi> {
         backgroundColor: appConfig.colorMain,
         title: Text(items[_currentIndex]),
         centerTitle: true,
-        actions: [
-          GestureDetector(
-              onTap: () {
-                //AddDeviceUi
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (BuildContext context) =>
-                            const AddDeviceUi()));
-              },
-              child: const Icon(
-                Icons.add,
-                color: Colors.white,
-                size: 35.0,
-              ))
-        ],
-      ),
-      bottomNavigationBar: Stack(
-        overflow: Overflow.visible,
-        children: [
-          BottomNavigationBar(
-              backgroundColor: Colors.white,
-              type: BottomNavigationBarType.fixed,
-              selectedItemColor: appConfig.colorMain,
-              unselectedItemColor: appConfig.colorText,
-              currentIndex: _currentIndex,
-              onTap: (index) {
-                setState(() {
-                  if (index != 1) {
-                    _currentIndex = index;
-                  }
 
-                  // print('${index}index');
-                });
-              },
-              items: const [
-                BottomNavigationBarItem(
-                    icon: Icon(
-                      Icons.person,
-                      size: 25.0,
-                    ),
-                    title: Text('profile',
-                        style: TextStyle(
-                            fontSize: 12.0, fontWeight: FontWeight.bold))),
-                BottomNavigationBarItem(
-                    icon: SizedBox(
-                      width: 0.0,
-                    ),
-                    title: Text('')),
-                BottomNavigationBarItem(
-                    icon: Icon(
-                      Icons.settings,
-                      size: 25.0,
-                    ),
-                    title: Text('settings',
-                        style: TextStyle(
-                            fontSize: 12.0, fontWeight: FontWeight.bold))),
-              ]),
-          Positioned(
-            bottom: 30.0,
-            left: MediaQuery.of(context).size.width * 0.5 - 30,
-            child: GestureDetector(
-              onTap: () {
-                setState(() {
-                  _currentIndex = 1;
-                });
-              },
-              child: Container(
-                width: 60.0,
-                decoration: BoxDecoration(
-                    color: appConfig.colorMain.withOpacity(0.125),
-                    shape: BoxShape.circle),
-                height: 60.0,
-                padding: const EdgeInsets.all(5.0),
-                child: Container(
-                  width: 55.0,
-                  height: 55.0,
-                  decoration: BoxDecoration(
-                      color: appConfig.colorMain, shape: BoxShape.circle),
-                  child: const Icon(
-                    Icons.add,
-                    color: Colors.white,
-                    size: 25.0,
-                  ),
-                ),
-              ),
-            ),
+      ),floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (BuildContext context) =>
+                  const AddDeviceUi()));
+        },child:
+       const Icon(
+            Icons.add,
+            color: Colors.white,
+            size: 35.0,
           ),
-        ],
       ),
+      bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: Colors.white,
+          type: BottomNavigationBarType.fixed,
+          selectedItemColor: appConfig.colorMain,
+          unselectedItemColor: appConfig.colorText,
+          currentIndex: _currentIndex,
+          onTap: (index) {
+            setState(() {
+              _currentIndex = index;
+
+              // print('${index}index');
+            });
+          },
+          items:   [
+            BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.person,
+                  size: 25.0,
+                ),
+                title: Text( getString(context, 'Profile'),
+                    style: TextStyle(
+                        fontSize: 12.0, fontWeight: FontWeight.bold))),
+            BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.home,
+                  size: 25.0,
+                ),
+                title: Text(getString(context, 'availableDevices'),
+                    style: TextStyle(
+                        fontSize: 12.0, fontWeight: FontWeight.bold))),
+            BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.settings,
+                  size: 25.0,
+                ),
+                title: Text( getString(context, 'settings'),
+                    style: TextStyle(
+                        fontSize: 12.0, fontWeight: FontWeight.bold))),
+          ]),
       body: getCurrentIndex(_currentIndex),
       drawer: const DrawerSideMenu(),
     ));

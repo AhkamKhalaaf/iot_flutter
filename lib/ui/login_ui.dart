@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:iotappexam/api/account_apis.dart';
 import 'package:iotappexam/common/button_ui.dart';
 import 'package:iotappexam/common/text_form_filed_ui.dart';
-import 'package:iotappexam/resources/app_config.dart';
-
-import 'home_ui.dart';
+import 'package:iotappexam/controllers/app_config.dart';
+import 'package:iotappexam/values.dart';
 
 class LoginUi extends StatefulWidget {
   const LoginUi({Key? key}) : super(key: key);
@@ -64,7 +63,7 @@ class _LoginUiState extends State<LoginUi> {
                   height: MediaQuery.of(context).size.width * 0.1,
                 ),
                 Text(
-                  'Phone number',
+                  getString(context, 'phoneNumber'),
                   style: TextStyle(color: appConfig.colorText),
                 ),
                 SizedBox(
@@ -72,9 +71,9 @@ class _LoginUiState extends State<LoginUi> {
                 ),
                 TextFormUi(
                   security: false,
-                  errorText: 'Enter phone number',
+                  errorText: getString(context,  'enterPhoneNumber'),
                   textInputType: TextInputType.phone,
-                  hintText: 'Phone Number',
+                  hintText:  getString(context, 'phoneNumber'),
                   textEditingController: phoneText,
                   nextFocusNode: passFocus,
                   ownFocusNode: phoneFocus,
@@ -91,7 +90,7 @@ class _LoginUiState extends State<LoginUi> {
                   height: MediaQuery.of(context).size.width * 0.05,
                 ),
                 Text(
-                  'Password',
+                  getString(context,'Password'),
                   style: TextStyle(color: appConfig.colorText),
                 ),
                 SizedBox(
@@ -99,10 +98,10 @@ class _LoginUiState extends State<LoginUi> {
                 ),
                 TextFormUi(
                   security: securityPass,
-                  errorText: 'Enter Password',
+                  errorText:  getString(context,'enterPassword'),
                   textInputType: TextInputType.text,
-                  hintText: 'Password ',
-                  textEditingController: phoneText,
+                  hintText:  getString(context,'Password'),
+                  textEditingController: passwordText,
                   nextFocusNode: FocusNode(),
                   ownFocusNode: passFocus,
                   rightIcon: Icon(
@@ -131,7 +130,7 @@ class _LoginUiState extends State<LoginUi> {
                 Align(
                   alignment: Alignment.center,
                   child: Text(
-                    ' do you forget your password ? ',
+                   getString(context,  'doYouForget'),
                     style: TextStyle(color: appConfig.colorMain),
                     textAlign: TextAlign.center,
                   ),
@@ -154,8 +153,8 @@ class _LoginUiState extends State<LoginUi> {
                     w: MediaQuery.of(context).size.width -
                         MediaQuery.of(context).size.width * 0.2,
                     padding: 10.0,
-                    widget: const Text(
-                      'Sign in ',
+                    widget:   Text(
+                    getString(context, 'signIn'),
                       style: TextStyle(color: Colors.white),
                     ),
                     backColor: appConfig.colorMain,
@@ -183,7 +182,7 @@ class _LoginUiState extends State<LoginUi> {
                         MediaQuery.of(context).size.width * 0.2,
                     padding: 10.0,
                     widget: Text(
-                      'Sign Up ',
+                      getString(context,  'signUp'),
                       style: TextStyle(color: appConfig.colorMain),
                     ),
                     backColor: appConfig.colorText,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:iotappexam/resources/app_config.dart';
+import 'package:iotappexam/controllers/app_config.dart';
 
 import 'devices_ui.dart';
 class RoomsUi extends StatefulWidget {

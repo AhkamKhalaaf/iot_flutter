@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import '../resources/app_config.dart';
-
+import 'package:iotappexam/controllers/app_config.dart';
 class TextFormUi extends StatelessWidget {
   const TextFormUi(
       {Key? key,
@@ -12,7 +11,11 @@ class TextFormUi extends StatelessWidget {
       required this.nextFocusNode,
       required this.textInputType,
       required this.errorText,
-      required this.security})
+      required this.security,
+        this.maxLines,
+        this.minLines,
+        this.paddingValue
+      })
       : super(key: key);
   final Widget? rightIcon;
   final Widget? leftIcon;
@@ -23,6 +26,9 @@ class TextFormUi extends StatelessWidget {
   final FocusNode nextFocusNode;
   final TextInputType textInputType;
   final bool security;
+  final int? maxLines;
+  final int? minLines;
+  final  double? paddingValue ;
 
   @override
   Widget build(BuildContext context) {
@@ -37,12 +43,11 @@ class TextFormUi extends StatelessWidget {
       onFieldSubmitted: (_) {
         FocusScope.of(context).requestFocus(nextFocusNode);
       },
-      maxLines: 1,
-      minLines: 1,
-      autocorrect: true,
+      maxLines: maxLines,
+      minLines: minLines,
+      autocorrect: true,controller: textEditingController,
       obscureText: security,
-      focusNode: ownFocusNode,
-      decoration: InputDecoration(
+      focusNode: ownFocusNode,      decoration: InputDecoration(
           prefixIcon: rightIcon,
           suffixIcon: leftIcon,
           contentPadding: const EdgeInsets.all(0.0),
@@ -74,7 +79,7 @@ class TextFormUi extends StatelessWidget {
       style: TextStyle(
           color: appConfig.colorText,
           fontSize: 12.0,
-          fontWeight: FontWeight.w500),
+          fontWeight: FontWeight.w500), 
     );
   }
 }
